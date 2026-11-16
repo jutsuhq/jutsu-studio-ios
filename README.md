@@ -8,7 +8,8 @@
 images on your own Higgsfield account, with the price shown before every generation and every take kept on the device.
 
 [Build](#build-from-source) · [What it does](#what-it-does) · [Architecture](docs/ios-architecture.md) ·
-[Website](https://jutsustudio.com/) · [Mac app](https://github.com/jutsuhq/jutsu-studio)
+[Website](https://jutsustudio.com/ios/) · [Mac app](https://github.com/jutsuhq/jutsu-studio) ·
+[Windows and Linux app](https://github.com/jutsuhq/higgsfield-desktop)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-8b5cf6.svg)](LICENSE)
 [![Platform](https://img.shields.io/badge/platform-iOS%2018%2B%20%7C%20iPadOS-000000?logo=apple&logoColor=white)](#at-a-glance)
@@ -30,6 +31,7 @@ images on your own Higgsfield account, with the price shown before every generat
 | Price | The app is free and adds no markup. Higgsfield bills your own account at its prices |
 | Languages | English, Russian, Spanish, Brazilian Portuguese, German, French, Japanese, Simplified Chinese |
 | Install | Not on the App Store yet. [Build from source](#build-from-source) with Xcode 26 |
+| Website | [jutsustudio.com/ios](https://jutsustudio.com/ios/): screenshots, FAQ and privacy policy |
 | Sibling | [Jutsu Studio for Mac](https://github.com/jutsuhq/jutsu-studio): this app runs on its Swift packages |
 
 <table>
@@ -102,6 +104,7 @@ needs the auth domain (`AUTH_DOMAIN`) to serve the OAuth client metadata and the
 Other open-source projects from [Jutsu Studio](https://jutsustudio.com/):
 
 - [Jutsu Studio](https://github.com/jutsuhq/jutsu-studio): the open-source Higgsfield desktop app for Mac
+- [Jutsu Studio for Windows and Linux](https://github.com/jutsuhq/higgsfield-desktop): the same desktop app built with Tauri
 - [Kawarimi](https://github.com/jutsuhq/kawarimi-local-character-swap): free local AI character swap for Windows and Linux, no cloud
 - [Swapjutsu](https://github.com/jutsuhq/swapjutsu-seedance-character-swap): free character swap for Mac, no watermark
 - [Open Source Higgsfield](https://github.com/jutsuhq/open-source-higgsfield): every #OpenSourceHiggsfield challenge project, by category
