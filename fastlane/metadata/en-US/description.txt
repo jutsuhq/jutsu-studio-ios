@@ -1,0 +1,36 @@
+Jutsu is an unofficial iPhone and iPad client for Higgsfield. Connect your own Higgsfield account or API key, and every video and image model it offers works natively, with Liquid Glass, background downloads and a Live Activity.
+
+Jutsu is not affiliated with, endorsed or sponsored by Higgsfield AI. You need your own Higgsfield account: generations run on Higgsfield and are billed to that account.
+
+CREATE
+• Start from a clip in Photos, Files or the Share sheet, or from Higgsfield's Motion Library
+• Trim on a filmstrip and keep several ranges
+• Restyle gallery, references, start and end frames, and the characters and elements on your account
+• Every model's options, with the price on the Generate button before you spend
+• Drafts survive a relaunch; prompt history, starred prompts and templates
+
+QUEUE
+• Jobs grouped by what they need from you, batches, Pause and Resume All
+• Confirm a higher price before a job is sent, and set a daily spending cap
+• Job details with IDs for support
+
+LIBRARY
+• Every take in a grid, full-screen before and after, and two takes side by side
+• Keep, reject and star, or cull new takes in a swipe deck
+• Variants stacked per generation, with an optional virality score
+• Your account's generation history
+• Save to Photos, or Export for Editing in ProRes or H.264 with a JSON sidecar
+• Delivery Sets: exact versions in several aspect ratios, exported to Files with a manifest
+
+ENHANCE
+Upscale, Reframe, Remove Background, Dub and Change Voice, each priced before it runs.
+
+IN THE BACKGROUND
+Results download while the app is closed, unsent jobs keep sending, and a Live Activity in the Dynamic Island follows your queue. Widgets, Shortcuts and Siri, and Share to Jutsu are included.
+
+PRIVATE BY DESIGN
+There is no Jutsu server, no analytics and no tracking. The app talks only to Higgsfield. Account sign-in happens on higgsfield.ai, so Jutsu never sees your password, and your key or token stays in this device's Keychain. Your clips and prompts go to Higgsfield only when you generate.
+
+Available in English, Russian, Spanish, Brazilian Portuguese, German, French, Japanese and Simplified Chinese.
+
+Higgsfield is a trademark of its owner and is named here only to describe compatibility.

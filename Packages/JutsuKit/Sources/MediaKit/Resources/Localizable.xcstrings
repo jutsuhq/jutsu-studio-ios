@@ -1,0 +1,242 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Even re-encoded, this video is %@, over the %@ upload limit. Select a shorter range." : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Even re-encoded, this video is %1$@, over the %2$@ upload limit. Select a shorter range."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Даже после перекодирования это видео — %1$@, что больше лимита загрузки %2$@. Выберите диапазон короче."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Incluso recodificado, este vídeo pesa %1$@, por encima del límite de subida de %2$@. Selecciona un intervalo más corto."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mesmo recodificado, este vídeo tem %1$@, acima do limite de envio de %2$@. Selecione um intervalo mais curto."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Auch neu codiert ist dieses Video %1$@ groß und liegt über dem Upload-Limit von %2$@. Wähle einen kürzeren Bereich."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Même réencodée, cette vidéo fait %1$@, au-dessus de la limite d’import de %2$@. Sélectionnez une plage plus courte."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "再エンコードしても、このビデオは%1$@で、アップロード上限の%2$@を超えています。範囲を短くしてください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "即使重新编码，此视频仍为 %1$@，超过 %2$@ 的上传限制。请选取更短的范围。"
+          }
+        }
+      }
+    },
+    "The file couldn't be converted: %@" : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удалось конвертировать файл: %@"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo convertir el archivo: %@"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível converter o arquivo: %@"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei konnte nicht konvertiert werden: %@"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le fichier n’a pas pu être converti : %@"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルを変換できませんでした：%@"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法转换文件：%@"
+          }
+        }
+      }
+    },
+    "The selected range lies outside the video. Select it again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Выбранный диапазон выходит за пределы видео. Выберите его снова."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El intervalo seleccionado queda fuera del vídeo. Selecciónalo de nuevo."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O intervalo selecionado está fora do vídeo. Selecione-o novamente."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der gewählte Bereich liegt außerhalb des Videos. Wähle ihn erneut."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La plage sélectionnée est hors de la vidéo. Sélectionnez-la de nouveau."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "選択した範囲がビデオの外にあります。もう一度選択してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "所选范围超出了视频。请重新选择。"
+          }
+        }
+      }
+    },
+    "This image can't be read. Save it as JPEG or PNG and add it again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удаётся прочитать это изображение. Сохраните его как JPEG или PNG и добавьте снова."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede leer esta imagen. Guárdala como JPEG o PNG y añádela de nuevo."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível ler esta imagem. Salve-a como JPEG ou PNG e adicione novamente."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Bild kann nicht gelesen werden. Sichere es als JPEG oder PNG und füge es erneut hinzu."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette image est illisible. Enregistrez-la en JPEG ou PNG et ajoutez-la de nouveau."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この画像を読み込めません。JPEGまたはPNGで保存して、もう一度追加してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法读取此图像。请将其存储为 JPEG 或 PNG，然后重新添加。"
+          }
+        }
+      }
+    },
+    "This video's format can't be read. Convert it to MP4 or MOV first." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не удаётся прочитать формат этого видео. Сначала конвертируйте его в MP4 или MOV."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede leer el formato de este vídeo. Conviértelo primero a MP4 o MOV."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível ler o formato deste vídeo. Converta-o para MP4 ou MOV primeiro."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Das Format dieses Videos kann nicht gelesen werden. Konvertiere es zuerst in MP4 oder MOV."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le format de cette vidéo est illisible. Convertissez-la d’abord en MP4 ou MOV."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このビデオの形式を読み込めません。先にMP4またはMOVに変換してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法读取此视频的格式。请先将其转换为 MP4 或 MOV。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

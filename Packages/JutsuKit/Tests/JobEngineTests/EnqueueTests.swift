@@ -1,0 +1,95 @@
+import Foundation
+import JutsuTestSupport
+import Testing
+
+@testable import JobEngine
+@testable import JutsuCore
+
+/// A double click on Generate sends two enqueues before the first is saved.
+@Suite(.timeLimit(.minutes(1)), .stopsEngines)
+struct EnqueueTests {
+    @Test(arguments: [false, true])
+    func unreadableSpendingSendsNothingEvenWithAnEarlierCapApproval(approved: Bool) async throws {
+        let harness = Harness()
+        let engine = try await harness.makeEngine { _ in throw BudgetError.spendingUnavailable }
+        await #expect(throws: BudgetError.self) {
+            try await engine.enqueue(makeSpec(), overCapApproved: approved)
+        }
+        #expect(try await harness.repository.activeJobs().isEmpty)
+        #expect(await harness.provider.submitKeys.isEmpty)
+    }
+
+    @Test func theSameRequestSentWhileTheFirstIsQueueingMakesOneJob() async throws {
+        let harness = Harness()
+        let engine = try await harness.makeEngine()
+        let spec = makeSpec()
+        let gates = await harness.repository.holdSave { $0.state == .preparing }
+
+        async let first = engine.enqueue(spec)
+        try await gates.reached.wait()
+        async let second = engine.enqueue(spec, batchID: UUID())
+        // The second has to reach the engine while the first is held.
+        await eventually { await engine.joinedEnqueues == 1 }
+        await gates.release.open(.success(()))
+        let (a, b) = try await (first, second)
+
+        #expect(a.id == b.id)
+        #expect(harness.log.count("estimate") == 1)
+        #expect(await harness.repository.wait(for: a.id, .done) != nil)
+        #expect(await harness.provider.submitKeys == [a.idempotencyKey])
+
+        let again = try await engine.enqueue(spec)
+        #expect(again.id != a.id)
+    }
+
+    @Test func twoSubmitsThatReadTheSpendAtOnceCantBothPassTheCap() async throws {
+        let harness = Harness()
+        let repository = harness.repository
+        let log = harness.log
+        let firstRead = Gate<Void>()
+        let release = Gate<Void>()
+        let engine = try await harness.makeEngine { job in
+            let committed = Budget.committed(
+                ((try? await repository.activeJobs()) ?? []).filter { $0.id != job.id }, on: .now, in: .usd)
+            log.append("spendStatus")
+            if log.count("spendStatus") == 1 {
+                await firstRead.open(.success(()))
+                _ = try? await release.wait()
+            }
+            return SpendStatus(committedToday: committed, cap: .usd(2))
+        }
+
+        async let first = engine.enqueue(makeSpec(references: 1))
+        try await firstRead.wait()
+        let second = Task { try await engine.enqueue(makeSpec(references: 2)) }
+        // Without the engine taking turns, the second would read the same spend now and pass too.
+        await eventually { await engine.runningEnqueues == 2 }
+        await release.open(.success(()))
+
+        let queued = try await first
+        let refused = await #expect(throws: JobEngineError.self) { try await second.value }
+        guard case .overCap = refused else {
+            Issue.record("not over the cap: \(String(describing: refused))")
+            return
+        }
+        #expect(try await repository.activeJobs().map(\.id) == [queued.id])
+    }
+
+    @Test func overTheCapOnlyAnApprovedEnqueueQueues() async throws {
+        let harness = Harness(spendStatus: SpendStatus(committedToday: 2, cap: .usd(3)))
+        let engine = try await harness.makeEngine()
+
+        // The refusal says what the cap counted: the cap, the rest of today and the job's own price.
+        let refused = await #expect(throws: JobEngineError.self) { try await engine.enqueue(makeSpec()) }
+        guard case .overCap(let over) = refused else {
+            Issue.record("not over the cap")
+            return
+        }
+        #expect(over.cap == .usd(3) && over.committedToday == 2)
+        #expect(over.price.unit == .usd && over.price.amount > 1)
+        #expect(try await harness.repository.activeJobs().isEmpty)
+
+        let job = try await engine.enqueue(makeSpec(), overCapApproved: true)
+        #expect(await harness.repository.wait(for: job.id, .done) != nil)
+    }
+}

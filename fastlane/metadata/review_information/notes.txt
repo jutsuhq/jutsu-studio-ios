@@ -1,0 +1,27 @@
+Jutsu is an unofficial client for Higgsfield (higgsfield.ai), a third-party AI video and image generation service. Generating needs the user's own Higgsfield account. The app has no server of its own, no in-app purchases, no ads and no sign-up or purchase links; generations are billed by Higgsfield to the connected account.
+
+PERMISSION TO USE HIGGSFIELD (Guideline 5.2.2)
+Higgsfield's Terms of Use (https://higgsfield.ai/terms-of-use-agreement, updated October 23, 2026) license developers "to build and operate applications for your end users" (Section 1.2), name the API and MCP as the programmatic routes (Section 11.1) and allow access to its MCP integration through third-party clients (Section 11.13). Jutsu uses only those routes: each user's own API key, or OAuth with PKCE against Higgsfield's MCP server. No key ships in the app, and it does not use web sessions or scraping.
+
+NAME AND TRADEMARK (Guidelines 4.1 and 5.2.1)
+Higgsfield appears only in the description, the promotional text, the screenshot captions and the connect screen, as plain text, to say which service the app works with; the first screenshot carries an "Unofficial Higgsfield client" badge. It is not in the app name, subtitle, keywords or icon, and no Higgsfield logo is used. The description says Jutsu is not affiliated with, endorsed or sponsored by Higgsfield.
+
+WHAT JUTSU ADDS
+A native queue that keeps sending and downloading in the background, prices and a daily spending cap before anything is sent, a library of takes kept on the device with keep, reject and compare, trimming, templates, widgets, a Live Activity and Shortcuts.
+
+HOW TO CONNECT (either works)
+1. Launch the app. Tap Skip (top right), or Continue twice and Get Started.
+2a. API key: tap "Use an API key" and enter the Key ID and Secret from the demo account fields of this submission (User name = Key ID, Password = Secret). The key has a small prepaid balance for testing.
+2b. Account: tap "Connect your Higgsfield account". higgsfield.ai opens in a system web sheet (ASWebAuthenticationSession); sign in there. The app never sees the password.
+
+WITHOUT AN ACCOUNT
+Tap Not Now on the Connect screen. You can browse Create (pick a clip from Photos or Files, trim it, choose a model and its options), Queue, Library and Account. Anything that calls Higgsfield (Generate, the style gallery, creating a character, the account's history) asks you to connect first.
+
+WHAT TO TRY
+Create > pick a short clip > pick a model > the price shows on Generate > Generate. The job appears in Queue, and the result in Library, where Save to Photos asks for add-only photo access.
+
+BACKGROUND MODES
+fetch and processing: a background URLSession downloads results, a BGContinuedProcessingTask keeps sending queued jobs, and a background refresh checks Higgsfield for finished work. A Live Activity shows running jobs.
+
+NETWORK
+The app talks only to Higgsfield's API (api.higgsfield.ai, open.higgsfield.ai) and its MCP server (mcp.higgsfield.ai, OAuth with PKCE). jutsustudio.com, the developer's site, only hosts the OAuth client metadata and the Universal Link file for the sign-in callback; the app makes no requests to it.

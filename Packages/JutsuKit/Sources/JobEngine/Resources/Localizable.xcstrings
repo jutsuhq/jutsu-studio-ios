@@ -1,0 +1,788 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Connect the Higgsfield account or API key this job was made with, then try again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Подключите аккаунт Higgsfield или ключ API, с которым была создана эта задача, и повторите."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conecta la cuenta de Higgsfield o la clave de API con la que se creó este trabajo e inténtalo de nuevo."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conecte a conta Higgsfield ou a chave de API com que este job foi criado e tente novamente."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verbinde den Higgsfield-Account oder API-Schlüssel, mit dem dieser Job erstellt wurde, und versuche es erneut."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Connectez le compte Higgsfield ou la clé API avec lesquels cette tâche a été créée, puis réessayez."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このジョブの作成に使用したHiggsfieldアカウントまたはAPIキーに接続してから、もう一度お試しください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "请连接制作此任务所用的 Higgsfield 账户或 API 密钥，然后重试。"
+          }
+        }
+      }
+    },
+    "Higgsfield is already making this job, so it can't be canceled." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield уже выполняет эту задачу, поэтому её нельзя отменить."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield ya está creando este trabajo, así que no se puede cancelar."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Higgsfield já está criando este job, então ele não pode ser cancelado."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield erstellt diesen Job bereits, daher kann er nicht abgebrochen werden."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield est déjà en train d’exécuter cette tâche : elle ne peut pas être annulée."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfieldがすでにこのジョブを作成中のため、キャンセルできません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield 已在处理此任务，因此无法取消。"
+          }
+        }
+      }
+    },
+    "Higgsfield may already be starting this job. Cancel it once it shows as queued." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield, возможно, уже запускает эту задачу. Отмените её, когда она появится в очереди."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es posible que Higgsfield ya esté iniciando este trabajo. Cancélalo cuando aparezca en cola."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Higgsfield pode já estar iniciando este job. Cancele-o quando aparecer como na fila."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield startet diesen Job womöglich schon. Brich ihn ab, sobald er als eingereiht angezeigt wird."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield est peut-être déjà en train de démarrer cette tâche. Annulez-la une fois qu’elle apparaît en file d’attente."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfieldがすでにこのジョブを開始しようとしている可能性があります。待機中と表示されてからキャンセルしてください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield 可能已在启动此任务。待其显示为已排队后再取消。"
+          }
+        }
+      }
+    },
+    "Higgsfield refused to send the result (HTTP %lld). Retry to download it again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield отказался отправить результат (HTTP %lld). Повторите, чтобы загрузить его снова."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield se negó a enviar el resultado (HTTP %lld). Reintenta para descargarlo de nuevo."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A Higgsfield recusou enviar o resultado (HTTP %lld). Tente novamente para baixá-lo de novo."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield hat das Senden des Ergebnisses verweigert (HTTP %lld). Wiederhole den Download."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield a refusé d’envoyer le résultat (HTTP %lld). Réessayez pour le télécharger de nouveau."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfieldが結果の送信を拒否しました（HTTP %lld）。再試行して、もう一度ダウンロードしてください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield 拒绝发送结果（HTTP %lld）。请重试以再次下载。"
+          }
+        }
+      }
+    },
+    "Internal error." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Внутренняя ошибка."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Error interno."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro interno."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Interner Fehler."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erreur interne."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内部エラー。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "内部错误。"
+          }
+        }
+      }
+    },
+    "Jobs queued meanwhile took today's spend close to your cap. Try again to confirm going over it." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Задачи, поставленные в очередь тем временем, приблизили сегодняшние расходы к лимиту. Повторите, чтобы подтвердить превышение."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los trabajos puestos en cola entretanto acercaron el gasto de hoy a tu límite. Inténtalo de nuevo para confirmar que lo superes."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jobs colocados na fila nesse meio-tempo aproximaram o gasto de hoje do seu limite. Tente novamente para confirmar a ultrapassagem."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "In der Zwischenzeit eingereihte Jobs haben die heutigen Ausgaben nahe an dein Limit gebracht. Versuche es erneut, um das Überschreiten zu bestätigen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les tâches mises en file entre-temps ont rapproché les dépenses du jour de votre plafond. Réessayez pour confirmer le dépassement."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "その間にキューに追加されたジョブにより、今日の支出が上限に近づきました。上限を超えて続けるには、もう一度お試しください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "期间排队的任务使今日支出接近你的上限。请重试以确认超出上限。"
+          }
+        }
+      }
+    },
+    "Only a job waiting for its turn can run next." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Следующей можно запустить только задачу, ожидающую своей очереди."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo un trabajo que espera su turno puede ejecutarse a continuación."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Somente um job esperando a vez pode ser executado a seguir."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur ein Job, der auf seinen Zug wartet, kann als Nächstes laufen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seule une tâche en attente de son tour peut être exécutée ensuite."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "順番待ちのジョブのみ、次に実行できます。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "只有轮到排队的任务才能下一个运行。"
+          }
+        }
+      }
+    },
+    "The file is larger than %@, so it wasn't downloaded." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл больше %@, поэтому он не загружен."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El archivo supera %@, por lo que no se descargó."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O arquivo é maior que %@, então não foi baixado."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei ist größer als %@ und wurde daher nicht geladen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le fichier dépasse %@, il n’a donc pas été téléchargé."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルが%@を超えているため、ダウンロードされませんでした。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件大于 %@，因此未下载。"
+          }
+        }
+      }
+    },
+    "The file isn't on a secure (https) address, so it wasn't downloaded." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Файл находится не по защищённому адресу (https), поэтому он не загружен."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El archivo no está en una dirección segura (https), por lo que no se descargó."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O arquivo não está em um endereço seguro (https), então não foi baixado."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Datei liegt nicht auf einer sicheren (https) Adresse und wurde daher nicht geladen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le fichier n’est pas à une adresse sécurisée (https), il n’a donc pas été téléchargé."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ファイルが安全な（https）アドレスにないため、ダウンロードされませんでした。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "文件不在安全（https）地址上，因此未下载。"
+          }
+        }
+      }
+    },
+    "The server refused to send the file (HTTP %lld)." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер отказался отправить файл (HTTP %lld)."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor se negó a enviar el archivo (HTTP %lld)."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O servidor recusou enviar o arquivo (HTTP %lld)."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server hat das Senden der Datei verweigert (HTTP %lld)."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le serveur a refusé d’envoyer le fichier (HTTP %lld)."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバがファイルの送信を拒否しました（HTTP %lld）。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务器拒绝发送文件（HTTP %lld）。"
+          }
+        }
+      }
+    },
+    "The server stopped sending the file. Try again later." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Сервер прекратил отправку файла. Повторите позже."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El servidor dejó de enviar el archivo. Inténtalo más tarde."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O servidor parou de enviar o arquivo. Tente novamente mais tarde."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Server hat das Senden der Datei beendet. Versuche es später erneut."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le serveur a cessé d’envoyer le fichier. Réessayez plus tard."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "サーバがファイルの送信を停止しました。後でもう一度お試しください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "服务器停止了发送文件。请稍后重试。"
+          }
+        }
+      }
+    },
+    "This job can't be retried." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эту задачу нельзя повторить."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este trabajo no se puede reintentar."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este job não pode ser tentado novamente."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Job kann nicht wiederholt werden."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette tâche ne peut pas être réessayée."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このジョブは再試行できません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此任务无法重试。"
+          }
+        }
+      }
+    },
+    "This job is no longer in the queue." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Этой задачи больше нет в очереди."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este trabajo ya no está en la cola."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este job não está mais na fila."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Job ist nicht mehr in der Warteschlange."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette tâche n’est plus dans la file d’attente."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このジョブはキューにありません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此任务已不在队列中。"
+          }
+        }
+      }
+    },
+    "This job isn't paused." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эта задача не приостановлена."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este trabajo no está en pausa."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este job não está pausado."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Job ist nicht pausiert."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette tâche n’est pas suspendue."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このジョブは一時停止していません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此任务未暂停。"
+          }
+        }
+      }
+    },
+    "This job was saved without its Higgsfield request, so its result can't be found." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Эта задача сохранена без запроса Higgsfield, поэтому её результат не найти."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este trabajo se guardó sin su solicitud de Higgsfield, así que no se encuentra su resultado."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este job foi salvo sem a solicitação à Higgsfield, então seu resultado não pode ser encontrado."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieser Job wurde ohne seine Higgsfield-Anfrage gesichert, daher ist sein Ergebnis nicht auffindbar."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cette tâche a été enregistrée sans sa requête Higgsfield : son résultat est introuvable."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "このジョブはHiggsfieldのリクエストなしで保存されたため、結果を見つけられません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此任务存储时没有附带其 Higgsfield 请求，因此找不到其结果。"
+          }
+        }
+      }
+    },
+    "This device is offline. Try again once it is connected." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Устройство не в сети. Повторите, когда оно подключится."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo no tiene conexión. Inténtalo de nuevo cuando se conecte."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este dispositivo está off-line. Tente novamente quando ele estiver conectado."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dieses Gerät ist offline. Versuche es erneut, sobald es verbunden ist."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cet appareil est hors ligne. Réessayez une fois connecté."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "デバイスがオフラインです。接続後にもう一度お試しください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "此设备已离线。请在连接后重试。"
+          }
+        }
+      }
+    },
+    "Higgsfield may have started this job already, so retrying it may charge again." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield мог уже запустить эту задачу, поэтому повтор может списать оплату снова."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Puede que Higgsfield ya haya iniciado este trabajo, así que reintentarlo podría cobrarse otra vez."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Higgsfield pode já ter iniciado este job, então tentar de novo pode cobrar outra vez."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield hat diesen Job eventuell schon gestartet, ein neuer Versuch kann erneut berechnet werden."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield a peut-être déjà lancé cette tâche, la relancer peut être facturé à nouveau."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfieldがこのジョブをすでに開始している可能性があるため、再試行すると再度課金されることがあります。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Higgsfield 可能已经开始此任务，重试可能会再次扣费。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

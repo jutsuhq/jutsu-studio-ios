@@ -1,0 +1,180 @@
+# XcodeGen spec. Generate the project with `xcodegen generate`; Jutsu.xcodeproj is not committed.
+name: Jutsu
+options:
+  bundleIdPrefix: ai.jutsustudio
+  deploymentTarget:
+    iOS: "18.0"
+  createIntermediateGroups: true
+
+packages:
+  JutsuKit:
+    path: Packages/JutsuKit
+  HiggsfieldKit:
+    path: Packages/HiggsfieldKit
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_STRICT_CONCURRENCY: complete
+    # App code is UI code: MainActor unless marked otherwise (SE-0466), nonisolated async runs on the caller (SE-0461).
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    DEVELOPMENT_TEAM: 8LNR79SMU8
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "7"
+    SWIFT_EMIT_LOC_STRINGS: YES
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+    DEAD_CODE_STRIPPING: YES
+  configs:
+    # Smaller code for the app and its extensions; the packages ask for -Osize in their manifests.
+    Release:
+      SWIFT_OPTIMIZATION_LEVEL: "-Osize"
+      ASSETCATALOG_COMPILER_OPTIMIZATION: space
+
+targets:
+  Jutsu:
+    type: application
+    platform: iOS
+    sources: [App, Shared]
+    dependencies:
+      - target: JutsuWidgets
+      - target: JutsuShare
+      - package: JutsuKit
+        product: JutsuCore
+      - package: JutsuKit
+        product: Presentation
+      - package: JutsuKit
+        product: Persistence
+      - package: JutsuKit
+        product: JobEngine
+      - package: JutsuKit
+        product: MediaKit
+      - package: JutsuKit
+        product: Secrets
+      - package: JutsuKit
+        product: HiggsfieldProviders
+      - package: HiggsfieldKit
+        product: HiggsfieldCore
+      - package: HiggsfieldKit
+        product: HiggsfieldAPI
+      - package: HiggsfieldKit
+        product: HiggsfieldMCP
+    entitlements:
+      path: App/Resources/Jutsu.entitlements
+      properties:
+        # The OAuth callback is a Universal Link on the auth domain (docs/ios-architecture.md §6);
+        # ASWebAuthenticationSession's https callback verifies the domain through webcredentials, not applinks.
+        com.apple.developer.associated-domains:
+          - applinks:$(AUTH_DOMAIN)
+          - webcredentials:$(AUTH_DOMAIN)
+        # The share extension leaves files in this group's container.
+        com.apple.security.application-groups:
+          - group.ai.jutsustudio.ios
+    info:
+      path: App/Resources/Info.plist
+      properties:
+        CFBundleDisplayName: Jutsu
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.photography
+        UILaunchScreen: {}
+        # Several windows on iPad (Stage Manager, File › New Window); each has its own tab and routes.
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+        # Landscape too: iPhone Duo's inner screen ignores this list anyway, and its outer one stands like a tent.
+        UISupportedInterfaceOrientations:
+          [UIInterfaceOrientationPortrait, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UISupportedInterfaceOrientations~ipad:
+          [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
+        UIAppFonts: [BarlowCondensed-ExtraBold.ttf]
+        UIUserInterfaceStyle: Dark
+        # Results are in the Files app, under On My iPhone › Jutsu.
+        UIFileSharingEnabled: true
+        LSSupportsOpeningDocumentsInPlace: true
+        NSPhotoLibraryAddUsageDescription: Jutsu saves the takes you choose to your photo library.
+        JutsuAuthDomain: $(AUTH_DOMAIN)
+        UIBackgroundModes: [fetch, processing]
+        NSSupportsLiveActivities: true
+        # jutsustudio://queue, the Live Activity's tap.
+        CFBundleURLTypes:
+          - CFBundleURLName: ai.jutsustudio.ios
+            CFBundleURLSchemes: [jutsustudio]
+        # Only HTTPS through the system; exempt from export compliance documentation.
+        ITSAppUsesNonExemptEncryption: false
+        BGTaskSchedulerPermittedIdentifiers:
+          - ai.jutsustudio.ios.refresh
+          - ai.jutsustudio.ios.send.*
+    settings:
+      base:
+        PRODUCT_NAME: Jutsu
+        PRODUCT_BUNDLE_IDENTIFIER: ai.jutsustudio.ios
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        TARGETED_DEVICE_FAMILY: "1,2"
+        # Serves the OAuth client metadata document and apple-app-site-association (the jutsustudio-site repo).
+        AUTH_DOMAIN: jutsustudio.com
+      configs:
+        # Xcode on this Mac has no Apple ID, so App Store builds sign with profiles made in the developer portal.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: iPhone Distribution
+          PROVISIONING_PROFILE_SPECIFIER: "Jutsu iOS App Store"
+
+  # The Live Activity and Dynamic Island of running jobs.
+  JutsuWidgets:
+    type: app-extension
+    platform: iOS
+    sources: [Widgets, Shared/RenderActivity.swift, Shared/WidgetSnapshot.swift, Shared/SharedInbox.swift]
+    entitlements:
+      path: Widgets/JutsuWidgets.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.ai.jutsustudio.ios
+    info:
+      path: Widgets/Info.plist
+      properties:
+        CFBundleDisplayName: Jutsu
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.jutsustudio.ios.widgets
+        TARGETED_DEVICE_FAMILY: "1,2"
+      configs:
+        # Xcode on this Mac has no Apple ID, so App Store builds sign with profiles made in the developer portal.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: iPhone Distribution
+          PROVISIONING_PROFILE_SPECIFIER: "Jutsu iOS Widgets App Store"
+
+  # "Share → Jutsu" from Photos and other apps.
+  JutsuShare:
+    type: app-extension
+    platform: iOS
+    sources: [Share, Shared/SharedInbox.swift]
+    entitlements:
+      path: Share/JutsuShare.entitlements
+      properties:
+        com.apple.security.application-groups:
+          - group.ai.jutsustudio.ios
+    info:
+      path: Share/Info.plist
+      properties:
+        CFBundleDisplayName: Jutsu
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.share-services
+          NSExtensionPrincipalClass: $(PRODUCT_MODULE_NAME).ShareViewController
+          NSExtensionAttributes:
+            NSExtensionActivationRule:
+              NSExtensionActivationSupportsMovieWithMaxCount: 1
+              NSExtensionActivationSupportsImageWithMaxCount: 8
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: ai.jutsustudio.ios.share
+        TARGETED_DEVICE_FAMILY: "1,2"
+      configs:
+        # Xcode on this Mac has no Apple ID, so App Store builds sign with profiles made in the developer portal.
+        Release:
+          CODE_SIGN_STYLE: Manual
+          CODE_SIGN_IDENTITY: iPhone Distribution
+          PROVISIONING_PROFILE_SPECIFIER: "Jutsu iOS Share App Store"

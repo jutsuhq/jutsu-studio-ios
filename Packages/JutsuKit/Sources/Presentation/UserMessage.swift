@@ -1,0 +1,224 @@
+import Foundation
+import JutsuCore
+
+/// An alert: short title, one sentence of detail, and where to go next.
+public struct UserMessage: Sendable, Hashable, Identifiable {
+    public enum Action: Sendable, Hashable {
+        case openSettings
+        case openConsole
+    }
+
+    public var title: String
+    public var message: String
+    public var action: Action?
+
+    public var id: String { title + "\n" + message }
+
+    public init(title: String, message: String, action: Action? = nil) {
+        self.title = title
+        self.message = message
+        self.action = action
+    }
+
+    public static let incompleteKey = UserMessage(
+        title: String(localized: "Enter both the key ID and the secret", bundle: .module),
+        message: String(localized: "You find both in the Higgsfield console.", bundle: .module))
+    public static let invalidKey = UserMessage(
+        title: String(localized: "Key is invalid", bundle: .module),
+        message: String(
+            localized: "Higgsfield refused this key ID and secret. Check both and try again.", bundle: .module),
+        action: .openConsole)
+    public static let notRevoked = UserMessage(
+        title: String(localized: "Signed out on this device only", bundle: .module),
+        message: String(
+            localized: """
+                Jutsu Studio couldn't read the sign-in to revoke it, \
+                so it stays valid on Higgsfield until it expires.
+                """, bundle: .module))
+
+    /// The message for `error`, or `nil` when the user shouldn't see one (they canceled, or the engine
+    /// handles it silently). `kind` is the connection the error came from, when known.
+    public init?(_ error: any Error, kind: ProviderKind? = nil) {
+        switch error {
+        case is CancellationError:
+            return nil
+        case let error as ProviderError:
+            guard let message = Self.provider(error, kind: kind) else { return nil }
+            self = message
+        case let error as SignInError:
+            self = Self.signIn(error)
+        case let error as MediaLinkError:
+            self = Self.mediaLink(error)
+        case let reason as FailureReason:
+            self = UserMessage(title: String(localized: "Can't run this job", bundle: .module), message: reason.text)
+        case _ where error.isOutOfSpace:
+            self = .notEnoughStorage
+        default:
+            self = UserMessage(
+                title: String(localized: "Something went wrong", bundle: .module), message: error.localizedDescription)
+        }
+    }
+
+    public static let notEnoughStorage = UserMessage(
+        title: String(localized: "Not enough storage", bundle: .module),
+        message: String(localized: "Free up space on this device, then try again.", bundle: .module))
+
+    private static func provider(_ error: ProviderError, kind: ProviderKind?) -> UserMessage? {
+        switch error {
+        case .unauthorized:
+            return refusedCredential(kind: kind)
+        case .insufficientFunds:
+            return kind == .account
+                ? UserMessage(
+                    title: String(localized: "Not enough credits", bundle: .module),
+                    message: String(localized: "Your plan has no credits left for this job.", bundle: .module))
+                : UserMessage(
+                    title: String(localized: "Not enough balance", bundle: .module),
+                    message: String(localized: "Top up your API balance in the Higgsfield console.", bundle: .module),
+                    action: .openConsole)
+        case .concurrencyLimit:
+            return nil
+        case .validation(let field, let message):
+            return UserMessage(
+                title: String(localized: "Higgsfield refused the request", bundle: .module),
+                message: field.map { "\($0): \(message)" } ?? message)
+        case .modelUnavailable:
+            return UserMessage(
+                title: String(localized: "Model temporarily unavailable", bundle: .module),
+                message: String(localized: "Jutsu Studio tries again later by itself.", bundle: .module))
+        // An unreadable 2xx answer, as an MCP tool's that names nothing it promised.
+        case .server(let status) where (200..<300).contains(status):
+            return UserMessage(
+                title: String(localized: "Higgsfield is having trouble", bundle: .module),
+                message: String(
+                    localized: "Higgsfield sent an answer Jutsu Studio can't read. Try again in a few minutes.",
+                    bundle: .module))
+        case .server(let status):
+            return UserMessage(
+                title: String(localized: "Higgsfield is having trouble", bundle: .module),
+                message: String(
+                    localized: "The server answered \(status). Try again in a few minutes.", bundle: .module))
+        case .network, .notSent:
+            return UserMessage(
+                title: String(localized: "Can't reach Higgsfield", bundle: .module),
+                message: String(localized: "Check your internet connection and try again.", bundle: .module))
+        case .rejected:
+            return UserMessage(
+                title: String(localized: "Rejected by content moderation", bundle: .module),
+                message: String(localized: "You were not charged.", bundle: .module))
+        case .outcomeUnknown:
+            return UserMessage(
+                title: String(localized: "The job may have started", bundle: .module),
+                message: String(
+                    localized: "Check your generations on Higgsfield before trying again, or it may be charged twice.",
+                    bundle: .module))
+        }
+    }
+
+    /// A refused key (wrong, expired or disabled) or a sign-in that can't be refreshed.
+    private static func refusedCredential(kind: ProviderKind?) -> UserMessage {
+        kind == .account
+            ? UserMessage(
+                title: String(localized: "Sign in again", bundle: .module),
+                message: String(localized: "Your Higgsfield sign-in has expired.", bundle: .module),
+                action: .openSettings)
+            : UserMessage(
+                title: String(localized: "API key is invalid", bundle: .module),
+                message: String(
+                    localized: "Higgsfield refused the key: it is wrong, expired or disabled. Check it in Settings.",
+                    bundle: .module),
+                action: .openSettings)
+    }
+
+    private static func signIn(_ error: SignInError) -> UserMessage {
+        switch error {
+        case .unavailable:
+            UserMessage(
+                title: String(localized: "Sign-in isn't available right now", bundle: .module),
+                message: String(
+                    localized:
+                        "Higgsfield's sign-in server didn't answer as expected. Try again later or use an API key.",
+                    bundle: .module))
+        case .flowUnavailable:
+            UserMessage(
+                title: String(localized: "This sign-in method isn't available", bundle: .module),
+                message: String(
+                    localized: "Higgsfield didn't accept Jutsu Studio's sign-in. Connect with an API key instead.",
+                    bundle: .module))
+        case .denied:
+            UserMessage(
+                title: String(localized: "Access was denied", bundle: .module),
+                message: String(localized: "Jutsu Studio wasn't allowed to use your account.", bundle: .module))
+        case .timedOut:
+            UserMessage(
+                title: String(localized: "Sign-in timed out", bundle: .module),
+                message: String(
+                    localized: "Jutsu Studio stopped waiting for the browser. Try signing in again.", bundle: .module))
+        case .invalidResponse:
+            UserMessage(
+                title: String(localized: "Sign-in failed", bundle: .module),
+                message: String(localized: "Higgsfield's answer didn't check out. Try again.", bundle: .module))
+        case .reauthenticationRequired:
+            UserMessage(
+                title: String(localized: "Sign in again", bundle: .module),
+                message: String(localized: "Your Higgsfield sign-in has expired.", bundle: .module),
+                action: .openSettings)
+        case .server(let description):
+            UserMessage(
+                title: String(localized: "Sign-in failed", bundle: .module),
+                message: description ?? String(localized: "Higgsfield refused the sign-in.", bundle: .module))
+        }
+    }
+
+    /// The alert for a link that couldn't be downloaded.
+    private static func mediaLink(_ error: MediaLinkError) -> UserMessage {
+        let title = String(localized: "Can't use this link", bundle: .module)
+        switch error {
+        case .notALink:
+            return UserMessage(
+                title: title,
+                message: String(localized: "Paste a web address that starts with https://.", bundle: .module))
+        case .notHTTPS:
+            return UserMessage(
+                title: title,
+                message: String(
+                    localized: "Only secure links (https://) are downloaded. Try the same address with https.",
+                    bundle: .module))
+        case .notMedia:
+            return UserMessage(
+                title: String(localized: "This link isn't a video or an image", bundle: .module),
+                message: String(
+                    localized: """
+                        It leads to a web page or another kind of file. Use a direct link to the file, such as one \
+                        ending in .mp4 or .jpg; pages like a YouTube video can't be downloaded.
+                        """, bundle: .module))
+        case .wrongKind(.video):
+            return UserMessage(
+                title: String(localized: "This link isn't a video", bundle: .module),
+                message: String(localized: "Add images under references instead.", bundle: .module))
+        case .wrongKind(.image):
+            return UserMessage(
+                title: String(localized: "This link isn't an image", bundle: .module),
+                message: String(localized: "Add videos as the source instead.", bundle: .module))
+        case .tooLarge(let maxBytes):
+            let limit = ByteCountFormatter.string(fromByteCount: maxBytes, countStyle: .file)
+            return UserMessage(
+                title: String(localized: "The file is too large", bundle: .module),
+                message: String(
+                    localized: "Links to files over \(limit) aren't downloaded. Trim the video first.",
+                    bundle: .module))
+        case .unavailable(let status):
+            return UserMessage(
+                title: String(localized: "Can't download the file", bundle: .module),
+                message: String(
+                    localized: "The server answered \(status). Check that the link opens in a browser.",
+                    bundle: .module))
+        case .network:
+            return UserMessage(
+                title: String(localized: "Can't download the file", bundle: .module),
+                message: String(localized: "Check your internet connection and try again.", bundle: .module))
+        case .notEnoughSpace:
+            return .notEnoughStorage
+        }
+    }
+}

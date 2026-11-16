@@ -1,0 +1,77 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: scripts/lint.sh
+
+  secrets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - run: scripts/check-secrets.sh
+
+  # HiggsfieldKit and the portable part of JutsuKit, which use Foundation only.
+  linux:
+    runs-on: ubuntu-latest
+    container: swift:6.4.1
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: swift test --package-path Packages/HiggsfieldKit
+      - run: swift test --package-path Packages/JutsuKit
+
+  # Every module, including MediaKit, Persistence and Secrets, compiled for the iOS Simulator.
+  ios:
+    runs-on: macos-26
+    timeout-minutes: 45
+    # The Simulator builds are arm64 only: the runner is Apple silicon, and a generic Simulator destination otherwise
+    # compiles everything a second time for x86_64.
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - run: xcodebuild -version
+      - name: Build HiggsfieldKit for iOS
+        working-directory: Packages/HiggsfieldKit
+        run: xcodebuild build -scheme HiggsfieldKit-Package -destination 'generic/platform=iOS Simulator' ARCHS=arm64 -quiet
+      - name: Build JutsuKit for iOS
+        working-directory: Packages/JutsuKit
+        run: xcodebuild build -scheme JutsuKit-Package -destination 'generic/platform=iOS Simulator' ARCHS=arm64 -quiet
+      - name: Install XcodeGen
+        run: scripts/install-xcodegen.sh "$RUNNER_TEMP" >>"$GITHUB_PATH"
+      - name: Build the app for iOS
+        run: |
+          xcodegen generate
+          xcodebuild build -project Jutsu.xcodeproj -scheme Jutsu \
+            -destination 'generic/platform=iOS Simulator' ARCHS=arm64 CODE_SIGNING_ALLOWED=NO -quiet
+      # Unsigned and unthinned, so larger than the App Store's download size; watch how it changes.
+      - name: Log the size of the Release app
+        run: |
+          xcodebuild build -project Jutsu.xcodeproj -scheme Jutsu -configuration Release \
+            -destination 'generic/platform=iOS' -derivedDataPath "$RUNNER_TEMP/release" CODE_SIGNING_ALLOWED=NO -quiet
+          app="$RUNNER_TEMP/release/Build/Products/Release-iphoneos/Jutsu.app"
+          mkdir -p "$RUNNER_TEMP/ipa/Payload" && cp -R "$app" "$RUNNER_TEMP/ipa/Payload/"
+          (cd "$RUNNER_TEMP/ipa" && zip -qr Jutsu.ipa Payload)
+          shopt -s nullglob
+          {
+            echo '### Release app size'
+            echo '```'
+            du -sh "$app" "$app/Jutsu" "$app"/*.car "$app"/*.bundle "$app"/PlugIns/* "$RUNNER_TEMP/ipa/Jutsu.ipa"
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"

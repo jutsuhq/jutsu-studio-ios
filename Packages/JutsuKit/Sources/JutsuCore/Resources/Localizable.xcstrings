@@ -1,0 +1,52 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "Today's spending couldn't be read. Nothing was sent. Repair the spending data or turn off the daily cap in Settings." : {
+      "localizations" : {
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Расходы за сегодня не удалось прочитать. Ничего не отправлено. Восстановите данные о расходах или отключите дневной лимит в настройках."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se pudo leer el gasto de hoy. No se envió nada. Repara los datos de gasto o desactiva el límite diario en Ajustes."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não foi possível ler o gasto de hoje. Nada foi enviado. Repare os dados de gastos ou desative o limite diário em Ajustes."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die heutigen Ausgaben konnten nicht gelesen werden. Nichts wurde gesendet. Repariere die Ausgabendaten oder schalte das Tageslimit in den Einstellungen aus."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Les dépenses du jour n’ont pas pu être lues. Rien n’a été envoyé. Réparez les données de dépenses ou désactivez le plafond quotidien dans Réglages."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "今日の支出を読み取れませんでした。何も送信されていません。支出データを修復するか、「設定」で1日の上限をオフにしてください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法读取今日支出。未发送任何内容。请修复支出数据，或在“设置”中关闭每日上限。"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}
